@@ -26,7 +26,7 @@ ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': "sis",
         'HOST': 'localhost',
         'PORT': 5432,
