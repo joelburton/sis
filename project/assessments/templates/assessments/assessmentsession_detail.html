@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block page_title %}Submissions for {{ assessmentsession }}{% endblock %}
+
+{% block content %}
+    <h1>Submissions for {{ assessmentsession }}</h1>
+
+    <table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Student</th>
+        <th>Status</th>
+        <th>Grade</th>
+        <th>Feedback</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for sub in assessmentsession.submission_set.all %}
+    <tr>
+        <td>
+            <a href="{{ sub.get_absolute_url }}"> {{ sub.student }}</a>
+        </td>
+        <td>{{ sub.status }}</td>
+        <td>{{ sub.grade }}</td>
+        <td>{{ sub.feedback|truncatewords:10 }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block page_title %}Rithm{% endblock %}
+
+{% block content %}
+    <h1>Rithm</h1>
+
+    <ul>
+    {% for cohort in cohort_list %}
+        <li>
+            <a href="{{ cohort.get_absolute_url }}">{{ cohort }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block page_title %}{{ submission }}{% endblock %}
+
+{% block content %}
+    <h1>
+        {{ submission }}
+    </h1>
+
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>Link</th>
+            <th>Submitted</th>
+            <th>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sf in submission.submissionfile_set.all %}
+            <tr>
+                <td><a href="{{ sf.zipfile.url }}">Link</a></td>
+                <td>{{ sf.created }}</td>
+                <td>{{ sf.comments }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form_errors form %}
+
+        <div class="row">
+            <div class="col-md-3">
+                {% bootstrap_field form.status %}
+            </div>
+            <div class="col-md-4">
+                {% bootstrap_field form.status_changed %}
+            </div>
+            <div class="col-md-3">
+                {% bootstrap_field form.assessor %}
+            </div>
+            <div class="col-md-2">
+                {% bootstrap_field form.grade %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                {% bootstrap_field form.feedback %}
+            </div>
+            <div class="col-lg-4">
+                {% bootstrap_field form.notes %}
+            </div>
+        </div>
+
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {% endbuttons %}
+    </form>
+
+{% endblock %}

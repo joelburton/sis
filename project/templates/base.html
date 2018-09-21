@@ -1,0 +1,29 @@
+{% extends 'bootstrap4/bootstrap4.html' %}
+
+{% load bootstrap4 %}
+
+{% block bootstrap4_extra_head %}
+    <title>{% block page_title %}{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
+{% endblock %}
+
+{% block bootstrap4_content %}
+
+    {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/">Rithm</a>
+        </nav>
+    {% endblock %}
+
+
+
+
+    <div class="container">
+
+        {% bootstrap_messages %}
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

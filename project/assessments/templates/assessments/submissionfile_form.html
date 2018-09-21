@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block page_title %}{{ assessment_session }}{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h1>
+        {{ assessment_session }}
+    </h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    {% bootstrap_form_errors form %}
+        <div class="row">
+            <div class="col-md-4">
+                {% bootstrap_field form.submission %}
+            </div>
+            <div class="col-md-8">
+                {% bootstrap_field form.zipfile %}
+            </div>
+        </div>
+        {% bootstrap_field form.comments %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {% endbuttons %}
+    </form>
+</div>
+
+{% endblock %}
