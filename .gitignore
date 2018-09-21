@@ -4,3 +4,4 @@
 /.idea/
 .*.sw[nop]
 *.pyc
+/project/env.py
