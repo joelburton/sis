@@ -11,7 +11,9 @@ class SubmissionForm(forms.ModelForm):
         model = Submission
         fields = ["status", "status_changed", "grade", "feedback", "notes", "assessor"]
         widgets = {
-            "status_changed": DateTimeInput(attrs={'readonly': True})
+            "status_changed": DateTimeInput(attrs={'readonly': True}),
+            'notes': Textarea(attrs={'cols': 80, 'rows': 16}),
+            'feedback': Textarea(attrs={'cols': 80, 'rows': 16}),
         }
 
 
@@ -22,7 +24,7 @@ class SubmissionFileForm(forms.ModelForm):
         model = SubmissionFile
         fields = ["submission", "zipfile", "comments"]
         widgets = {
-            'comments': Textarea(attrs={'cols': 80, 'rows': 3}),
+            'comments': Textarea(attrs={'cols': 80, 'rows': 5}),
         }
         labels = {
             'submission': 'Student',
