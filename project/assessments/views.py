@@ -10,12 +10,26 @@ class SubmissionFileCreateView(generic.CreateView):
 
     model = SubmissionFile
     form_class = SubmissionFileForm
+    success_url = "/assessments/thanks/"
+
+    def get_form(self, form_class=None):
+        """Override form to handle custom choices for student."""
+
+        form = super().get_form(form_class)
+        form.fields['submission'].queryset = Submission.objects.filter(
+                assessmentsession=self.kwargs['assessmentsession_id'])
+        return form
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['assessment_session'] = AssessmentSession.objects.get(pk=self.kwargs['assessmentsession_id'])
 
         return context
+
+class SubmissionFileThanksView(generic.TemplateView):
+    """Acknowledge receipt."""
+
+    template_name = "assessments/thanks.html"
 
 
 class CohortDetailView(LoginRequiredMixin, generic.DetailView):

@@ -42,7 +42,7 @@ SERVER_EMAIL = "joel@joelburton.com"
 
 
 
-MEDIA_ROOT = BASE_DIR + "/media/"
+MEDIA_ROOT = GIT_DIR + "/media/"
 MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
